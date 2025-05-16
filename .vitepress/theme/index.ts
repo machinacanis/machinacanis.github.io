@@ -6,11 +6,32 @@ import Category from "./components/Category.vue";
 import Tags from "./components/Tags.vue";
 import Page from "./components/Page.vue";
 import Comment from "./components/CommentGiscus.vue";
+import { setupScrollGradient } from "./scrollGradient.js";
+import { onMounted, onUnmounted } from "vue";
 
 import "./custom.css";
 
 export default {
   ...DefaultTheme,
+
+  setup() {
+    // 如果DefaultTheme有自己的setup，先执行它
+    if (DefaultTheme.setup) {
+      DefaultTheme.setup();
+    }
+
+    // 在组件挂载后设置滚动渐变效果
+    let cleanup;
+    onMounted(() => {
+      cleanup = setupScrollGradient();
+    });
+
+    // 组件卸载时清理事件监听器
+    onUnmounted(() => {
+      if (cleanup) cleanup();
+    });
+  },
+
   Layout: NewLayout,
   enhanceApp({ app }) {
     // register global compoment
