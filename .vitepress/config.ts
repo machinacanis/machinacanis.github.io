@@ -32,7 +32,7 @@ export default defineConfig({
       categoryId: "DIC_kwDOOrEDTs4CqOBd",
     },
     nav: [
-      { text: "🧊Cryo", link: "/cryo/" },
+      { text: "🧊Cryo", link: "https://machinacanis.github.io/cryo/" },
       { text: "主页", link: "/" },
       { text: "分类", link: "/pages/category" },
       { text: "归档", link: "/pages/archives" },
