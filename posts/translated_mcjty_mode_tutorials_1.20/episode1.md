@@ -144,7 +144,7 @@ Try it out and if all went well you should see Minecraft If this was successful 
 Make sure that you're using Java 17!
 :::
 
-![image](https://i.imgur.com/ktUCq7P.png)
+image
 
 ## The Basic Mod Class
 
@@ -228,7 +228,7 @@ In the following image there are three columns:
 - `Inventory`: all objects in an inventory (player or other containers) are represented with ItemStacks. An ItemStack is an actual in-game instance of an item. Note: in order to be able to hold blocks in your inventory the block needs a corresponding item
 - `World`: when blocks are placed in the world they are placed as a `BlockState`. A BlockState is a specific configuration of a block. For example, a furnace can have six orientations. Those are six different blockstates. In addition, a furnace can also be powered or not. So that means in total 12 different blockstates. '''Block Entities''' are objects that help extend blocks in the world to be able to hold more information (like inventory) as well as do things (tick).
 
-![image](https://i.imgur.com/S1EQwrm.png)
+image
 
 ## Sides
 
@@ -271,7 +271,7 @@ Events that implement `IModEventBus` are fired on the `Mod` event bus.
 A popular image that is often posted on the Forge Discord is this one. Very often people have trouble
 with their events. Often the problem is that their method is static or not static when it should be the other way around.
 
-![Events](../assets/tutorials/eventhandler.png)
+Events
 
 ## Registration and Timing
 
