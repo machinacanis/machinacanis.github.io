@@ -32,11 +32,12 @@ export default defineConfig({
       categoryId: "DIC_kwDOOrEDTs4CqOBd",
     },
     nav: [
-      { text: "主页 Home", link: "/" },
-      { text: "分类 Category", link: "/pages/category" },
-      { text: "归档 Archive", link: "/pages/archives" },
-      { text: "标签 Tags", link: "/pages/tags" },
-      { text: "关于 About", link: "/pages/about" },
+      { text: "🧊Cryo", link: "/cryo/" },
+      { text: "主页", link: "/" },
+      { text: "分类", link: "/pages/category" },
+      { text: "归档", link: "/pages/archives" },
+      { text: "标签", link: "/pages/tags" },
+      { text: "关于", link: "/pages/about" },
       // { text: 'Airene', link: 'http://airene.net' }  -- External link test
     ],
     search: {
@@ -46,9 +47,7 @@ export default defineConfig({
     outline: {
       label: "文章摘要",
     },
-    socialLinks: [
-      { icon: "github", link: "https://github.com/airene/vitepress-blog-pure" },
-    ],
+    socialLinks: [{ icon: "github", link: "https://github.com/machinacanis" }],
   } as any,
 
   srcExclude: isProd
