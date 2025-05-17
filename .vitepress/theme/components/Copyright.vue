@@ -1,6 +1,7 @@
 <template>
     <div class="site-footer">
         🌞 祝今日愉快。<br />
+        总计被访问 <span id="busuanzi_value_site_pv" /> 次 |
         GPLv3 Licensed | Copyright © 2025 <a class="vitepress" :href="website">{{ webTitle }}</a> |
         Powered by <a class="vitepress" target="_blank" href="//vitepress.vuejs.org/">VitePress</a> |
         Themed by <a class="vitepress" target="_blank"

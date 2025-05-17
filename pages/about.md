@@ -8,7 +8,7 @@ comment: true
 
 <div class="about-container">
   <div class="avatar-container">
-    <img src="../public/avatar.png" alt="Kyoku的头像" class="avatar-image">
+    <img src="/avatar.png" alt="Kyoku的头像" class="avatar-image">
   </div>
   <div class="intro-text">
     <p>你好，我是 <span class="my-name">Kyoku⭐</span> （极）。</p>
@@ -26,8 +26,9 @@ comment: true
 
 我的个人项目均托管在 Github 上，欢迎访问我的主页：
 
-- [https://github.com/machinacanis](https://github.com/machinacanis)
-- [https://github.com/kyokukong](https://github.com/kyokukong)
+<LinkCard url="https://github.com/machinacanis" title="MachinaCanis' Github" description="大概...算是个小号？其实正儿八经的东西都在这个号上就是了。" logo="/GithubLogoKawaii.png"/>
+
+<LinkCard url="https://github.com/kyokukong" title="KyokuKong's Github" description="平常使用的大号，但是仓库堆的很随性，都是自己用的一些东西。" logo="/GithubLogoKawaii.png"/>
 
 这个 Blog 差不多是我的一个个人知识库，如果这里的东西能够帮到你，那实在是我的荣幸。
 
@@ -39,7 +40,7 @@ comment: true
 
 我也是一个 UTAU / Vocaloid 相关爱好者，你可以在我的 [Bilibili 主页](https://space.bilibili.com/1220441567) 找到我的一些作品。
 
-算是个键盘宅，目前处于养老状态，主力捷克原厂樱桃黑 g80-3000 + 宁芝 Micro82 35g 静电容轮着用，客制化折腾了一大堆最后留着的也就剩下一把 hg 茶的 MK870，魔改成了无钢形态，但是平常敲码还是更习惯用另外两个。
+算是个键盘宅，目前处于养老状态，主力捷克原厂 62g 樱桃黑 g80-3000 + 宁芝 Micro82 35g 静电容轮着用，客制化折腾了一大堆最后留着的也就剩下一把 hg 茶的 MK870，魔改成了无钢形态，但是平常敲码还是更习惯用另外两个。
 
 11 年 Minecraft 玩家，正在试着成为社区开发者。科技包爱好者，大工厂自动化狂魔，魔法类 Mod 从来没玩明白过。
 
@@ -48,6 +49,10 @@ comment: true
 曾经是 Destiny 2 玩家，可惜只是曾经了，被棒鸡气吐血之后再也不想碰 MMORPG 整个大类。
 
 COD20 / COD21 / CODM / 守望先锋 玩家，还算是会玩 FPS，大概。
+
+<Marker>OpenSUSE 天下第一，我维护的服务器清一色装了 OpenSUSE，强推，用的真的爽！！！OpenSUSE 天下第一！！！</Marker>
+
+<Heimu>所以日用还是 Windows，还是太爱打游戏了（悲</Heimu>
 
 ## 🔧 **技能**
 
@@ -63,7 +68,7 @@ COD20 / COD21 / CODM / 守望先锋 玩家，还算是会玩 FPS，大概。
 
 [![My Skills](https://skillicons.dev/icons?i=ps,pr,au,vim,neovim,vscode,pycharm,idea,obsidian)](https://skillicons.dev)
 
-### **使用/维护过的 Linux 发行版**
+### **使用过的 Linux 发行版**
 
 [![My Skills](https://skillicons.dev/icons?i=debian,ubuntu,arch,mint)](https://skillicons.dev)
 
@@ -71,10 +76,11 @@ COD20 / COD21 / CODM / 守望先锋 玩家，还算是会玩 FPS，大概。
 
 ### **_编程字体_**
 
-- [Inconsolata](https://github.com/googlefonts/Inconsolata) 神中神，伟大无需多言，辨识度美观度均是上上等，看着舒服，用着更舒服
-- [朱雀仿宋](https://github.com/TrionesType/zhuque) Super 美丽的仿宋体，用来在 VSCode 里跟 Inconsolata 混用，可惜没法和 Inconsolata 等宽对齐
-- [Sarasa Term SC Nerd](https://github.com/laishulu/Sarasa-Term-SC-Nerd) 比较可惜的一集，思源和 losevka 单独拿出来哪个都好看，但是放在一起因为字重问题总是有点看不爽，但是中英文混合编程字体确实不多，JetBrain 系 IDE 用户强推
-- [ArgonHan](https://github.com/zhimoe/programming-fonts) 来自曾经做了 FangsongCode （Source Code Pro + 聚珍新仿）的作者 Zhimoe 的新作，把 Monaspace Argon 和聚珍新仿融合在一起，效果不错，但是等宽还是 5 英文字符比 3 中文字符，多少有点难受，但是也是能凑整了
+- [Inconsolata](https://github.com/googlefonts/Inconsolata) 神中神，伟大无需多言，辨识度美观度均是上上等，看着舒服，用着更舒服。
+- [朱雀仿宋](https://github.com/TrionesType/zhuque) Super 美丽的仿宋体，用来在 VSCode 里跟 Inconsolata 混用，可惜没法和 Inconsolata 等宽对齐。
+- [Sarasa Term SC Nerd](https://github.com/laishulu/Sarasa-Term-SC-Nerd) 比较可惜的一集，思源和 losevka 单独拿出来哪个都好看，但是放在一起因为字重问题总是有点看不爽，但是中英文混合编程字体确实不多，JetBrain 系 IDE 用户强推。
+- [ArgonHan](https://github.com/zhimoe/programming-fonts) 来自曾经做了 FangsongCode （Source Code Pro + 聚珍新仿）的作者 Zhimoe 的新作，把 Monaspace Argon 和聚珍新仿融合在一起，效果不错，但是等宽还是 5 英文字符比 3 中文字符，多少有点难受，但是也是能凑整了。
+- [Maple Mono](https://github.com/subframe7536/Maple-font) 圆润可爱又好看，用来在 VSCode 里用，连字渲染太 Cool 了，而且字体肥的恰到好处，看起来很舒适。
 
 ## 🎮 **我的设备**
 
@@ -116,3 +122,15 @@ COD20 / COD21 / CODM / 守望先锋 玩家，还算是会玩 FPS，大概。
 
 - `罗技 Logitech GPro Wireless Gen 1`
 - `雷柏 Rapoo VT9 Pro "星霜"` ⭐
+
+## 👕 **Blog 相关 & 鸣谢**
+
+- 这个网站是使用 [**VitePress**](https://vitepress.dev/zh/) 搭建的，托管在 `Github Pages` 以及 `Vercel` 上。
+
+<Marker>VitePress 真的用过都说好！！！</Marker>
+
+- 在 [vitepress-blog-pure](https://github.com/airene/vitepress-blog-pure) 的基础上魔改了页面样式，更有超量 **<span class="RGB-text">RGB</span>** 加持，页面响应速度提升 100000000000%。
+
+- 根据 [VitePress 快速上手中文教程](https://vitepress.yiov.top/) 添加了很多有趣的组件。
+
+- 使用了 [萌娘百科](https://moegirl.icu/Mainpage) 的黑幕样式，感谢！

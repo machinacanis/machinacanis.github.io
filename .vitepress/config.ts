@@ -15,6 +15,11 @@ export default defineConfig({
       infoLabel: "⭐ 一些你应该知道的...",
       detailsLabel: "详情...",
     },
+    lineNumbers: true, //false关闭
+    theme: {
+      light: "vitesse-light",
+      dark: "vitesse-dark",
+    },
   },
 
   title: "Kikaiken",

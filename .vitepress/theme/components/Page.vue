@@ -43,6 +43,7 @@
 import { useData, withBase } from 'vitepress'
 import { PropType, computed, onMounted, ref } from 'vue'
 import { generatePaginationArray } from '../pagination'
+import DataPanel from './DataPanel.vue'
 interface Article {
     regularPath: string
     frontMatter: {
@@ -76,7 +77,7 @@ const pageArray = computed(() => {
 
 function openSearch() {
     // 查找具有 DocSearch-Button 和 aria-label="Search" 的按钮并触发点击
-    const btn = document.querySelector('.DocSearch-Button[aria-label="Search"]') as HTMLElement
+    const btn = document.querySelector('.DocSearch-Button') as HTMLElement
     if (btn) btn.click()
 }
 </script>
@@ -86,19 +87,22 @@ function openSearch() {
     border-bottom: 1px dashed var(--vp-c-divider);
     padding: 14px 0 14px 0;
 }
+
 .post-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .post-title {
     font-size: 1.0625rem;
     font-weight: 500;
-    color: var(--bt-theme-title)!important;
+    color: var(--bt-theme-title) !important;
     margin: 0.1rem 0;
 }
-.post-title a{
-    color: var(--bt-theme-title)!important;
+
+.post-title a {
+    color: var(--bt-theme-title) !important;
 }
 
 .describe {
@@ -111,11 +115,13 @@ function openSearch() {
     margin: 10px 0;
     line-height: 1.5rem;
 }
+
 .pagination {
     margin-top: 16px;
     display: flex;
     justify-content: center;
 }
+
 .link {
     display: inline-block;
     width: 26px;
@@ -125,6 +131,7 @@ function openSearch() {
     font-weight: 400;
     border-radius: 20px;
 }
+
 .link.active {
     background: var(--vp-c-text-1);
     color: var(--vp-c-neutral-inverse);
@@ -135,11 +142,13 @@ function openSearch() {
     .post-list {
         padding: 14px 0 14px 0;
     }
+
     .post-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
+
     .post-title {
         font-size: 1.0625rem;
         font-weight: 400;
@@ -149,6 +158,7 @@ function openSearch() {
         overflow: hidden;
         width: 17rem;
     }
+
     .describe {
         font-size: 0.9375rem;
         display: -webkit-box;
@@ -165,4 +175,3 @@ function openSearch() {
     text-decoration: underline;
 }
 </style>
-

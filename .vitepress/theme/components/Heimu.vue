@@ -1,7 +1,9 @@
 <template>
-    <span class="heimu" :title="title || '你知道的太多了'">
-        <slot></slot>
-    </span>
+    <p>
+        <span class="heimu" :title="title || '你知道的太多了'">
+            <slot></slot>
+        </span>
+    </p>
 </template>
 
 <script setup>
@@ -45,4 +47,6 @@ a:active .heimu {
 .new:active .heimu {
     color: #BA0000 !important;
 }
+
+/*阅读更多：https://zh.moegirl.org/MediaWiki:Mobile.css 本文引自萌娘百科(https://zh.moegirl.org)，文字内容默认使用《知识共享 署名-非商业性使用-相同方式共享 3.0》协议。*/
 </style>
