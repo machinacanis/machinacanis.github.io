@@ -534,7 +534,7 @@ h3 {
   z-index: 30;
 }
 
-.medium-zoom-image {
+.medium-zoom-image:not(.skill-icons) {
   z-index: 9999 !important; /* 给的值是21，但是实测盖不住，直接999 */
 }
 

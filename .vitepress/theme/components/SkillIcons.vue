@@ -31,6 +31,7 @@ const idList = computed(() => {
     flex-wrap: wrap;
     gap: 8px;
     align-items: center;
+    z-index: 1;
 }
 
 .skill-icons {
@@ -38,5 +39,6 @@ const idList = computed(() => {
     border: 3px solid var(--vp-c-brand-2);
     border-radius: 36px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    z-index: 1;
 }
 </style>
