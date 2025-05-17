@@ -526,11 +526,6 @@ h3 {
   text-shadow: #5b5d5f70 3px 3px 3px;
 }
 
-/* 确保顶栏有更高的z-index */
-.VPNav {
-  z-index: 2 !important; /* 确保导航栏始终在最上层 */
-}
-
 /* 修复medium-zoom图片层级问题 */
 .medium-zoom-overlay {
   z-index: 30;
