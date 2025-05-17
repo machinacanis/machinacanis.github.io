@@ -528,7 +528,7 @@ h3 {
 
 /* 确保顶栏有更高的z-index */
 .VPNav {
-  z-index: 20 !important; /* 确保导航栏始终在最上层 */
+  z-index: 2 !important; /* 确保导航栏始终在最上层 */
 }
 
 /* 修复medium-zoom图片层级问题 */
