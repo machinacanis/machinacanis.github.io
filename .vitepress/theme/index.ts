@@ -14,6 +14,7 @@ import Highlight from "./components/Highlight.vue";
 import MarkerEvy from "./components/MarkerEvy.vue";
 import LinkCard from "./components/LinkCard.vue";
 import ArticleMetadata from "./components/ArticleMetadata.vue";
+import SkillIcons from "./components/SkillIcons.vue";
 import { updateHomePageStyle } from "./functions.ts";
 import { onMounted, onUnmounted, watch, nextTick } from "vue";
 
@@ -76,6 +77,7 @@ export default {
     app.component("MarkerEvy", MarkerEvy);
     app.component("LinkCard", LinkCard);
     app.component("ArticleMetadata", ArticleMetadata);
+    app.component("SkillIcons", SkillIcons);
 
     if (inBrowser) {
       // 不蒜子配置

@@ -58,19 +58,19 @@ COD20 / COD21 / CODM / 守望先锋 玩家，还算是会玩 FPS，大概。
 
 ### **编程语言：**
 
-[![My Skills](https://skillicons.dev/icons?i=python,go,kotlin,java,js,ts,c,bash,html,css,md,solidity)](https://skillicons.dev)
+<p><SkillIcons ids="c,py,java,kotlin,js,ts,go,html,css,md,solidity" /></p>
 
 ### **框架 & 周边 & 数据库：**
 
-[![My Skills](https://skillicons.dev/icons?i=docker,mongodb,mysql,postgresql,fastapi,flask,git,ktor,nodejs,sqlite,npm)](https://skillicons.dev)
+<p><SkillIcons ids="docker,mongodb,mysql,postgresql,fastapi,flask,git,ktor,nodejs,sqlite,npm" /></p>
 
 ### **专业软件 & IDE**
 
-[![My Skills](https://skillicons.dev/icons?i=ps,pr,au,vim,neovim,vscode,pycharm,idea,obsidian)](https://skillicons.dev)
+<p><SkillIcons ids="ps,pr,au,vim,neovim,vscode,pycharm,idea,obsidian" /></p>
 
 ### **使用过的 Linux 发行版**
 
-[![My Skills](https://skillicons.dev/icons?i=debian,ubuntu,arch,mint)](https://skillicons.dev)
+<p><SkillIcons ids="debian,ubuntu,arch,mint" /></p>
 
 ## 🔤 **常用配置**
 
