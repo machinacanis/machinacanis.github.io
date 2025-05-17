@@ -410,9 +410,10 @@ h3 {
 /* 关于页面的自我介绍容器 */
 .about-container {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   margin: 30px 0;
   gap: 25px;
-  align-items: flex-start;
   border-radius: 18px;
   padding: 20px;
   background-color: var(--vp-c-bg-soft);
@@ -425,6 +426,7 @@ h3 {
   height: auto;
   position: relative;
   z-index: 1; /* 设置较低的z-index值 */
+  margin-left: 0.8rem;
 }
 
 /* 头像图片 */
@@ -434,7 +436,7 @@ h3 {
   border-radius: 18px;
   /* 圆角矩形 */
   object-fit: cover;
-  padding: 5px;
+  padding: 3px;
   /* 替换border，使用padding为渐变边框留出空间 */
   transition: transform 0.3s ease;
   position: relative;

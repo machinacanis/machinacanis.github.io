@@ -14,11 +14,9 @@ comment: true
     <p>你好，我是 <span class="my-name">Kyoku⭐</span> （极）。</p>
     <p>你也可以叫我 <strong>机器狗（machinacanis）</strong>，男的，04 年生，经常出没于浙江省 湖州市 / 杭州市 / 金华市。</p>
     <p><strong>汉语</strong> / <strong>English</strong> OK，<strong>日本語</strong> 少しわかります</p>
-    <p class="intro-text-micro"><- 图像中的角色为 狽音ウルシ，由 熙熙 绘制 </p>
+    <p class="intro-text-micro">头像中的角色为 狽音ウルシ，由 熙熙 绘制 </p>
   </div>
 </div>
-
-**汉语** / **English** OK，**日本語** 少しわかります
 
 一个还有很多需要学的后端软件工程师，主要使用 `Go`、`Kotlin` 以及 `Python` 进行开发，暂时还在家里蹲。
 
