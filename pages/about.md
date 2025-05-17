@@ -127,10 +127,10 @@ COD20 / COD21 / CODM / 守望先锋 玩家，还算是会玩 FPS，大概。
 
 - 这个网站是使用 [**VitePress**](https://vitepress.dev/zh/) 搭建的，托管在 `Github Pages` 以及 `Vercel` 上。
 
-<Marker>VitePress 真的用过都说好！！！</Marker>
-
 - 在 [vitepress-blog-pure](https://github.com/airene/vitepress-blog-pure) 的基础上魔改了页面样式，更有超量 **<span class="RGB-text">RGB</span>** 加持，页面响应速度提升 100000000000%。
 
 - 根据 [VitePress 快速上手中文教程](https://vitepress.yiov.top/) 添加了很多有趣的组件。
 
-- 使用了 [萌娘百科](https://moegirl.icu/Mainpage) 的黑幕样式，感谢！
+- 使用了 [萌娘百科](https://moegirl.icu/Mainpage) 的黑幕样式。
+
+- 从 [vuepress-deco](https://theme-reco.vuejs.press/) 薅了个动态 svg 背景，好看捏！

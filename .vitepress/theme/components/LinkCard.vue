@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
 /* 卡片背景 */
 .linkcard {
     background-color: var(--vp-c-bg-soft);
-    border-radius: 16px;
+    border-radius: 18px;
     padding: 8px 16px 8px 8px;
     transition: color 0.5s, background-color 0.5s;
     margin-top: 15px;
