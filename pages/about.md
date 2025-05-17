@@ -31,7 +31,7 @@ comment: true
 
 这个 Blog 差不多是我的一个个人知识库，如果这里的东西能够帮到你，那实在是我的荣幸。
 
-你还可以在 [博客园](https://www.cnblogs.com/machinacanis) 找到和这里一样的内容备份。
+你还可以在 [博客园](https://www.cnblogs.com/machinacanis) 找到一部分和这里相同的内容备份。
 
 ## 💎 **兴趣爱好**
 

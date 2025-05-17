@@ -6,6 +6,7 @@ import Category from "./components/Category.vue";
 import Tags from "./components/Tags.vue";
 import Page from "./components/Page.vue";
 import Comment from "./components/CommentGiscus.vue";
+import Heimu from "./components/Heimu.vue"; // 导入新组件
 import { setupScrollGradient } from "./scrollGradient.js";
 import { onMounted, onUnmounted } from "vue";
 
@@ -40,5 +41,6 @@ export default {
     app.component("Archives", Archives);
     app.component("Page", Page);
     app.component("Comment", Comment);
+    app.component("Heimu", Heimu); // 注册为全局组件
   },
 } satisfies Theme;

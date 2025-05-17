@@ -1,13 +1,13 @@
 ---
 date: 2025-05-17
-title: "[翻译] McJty的Mod入门教程 1.20 - EP0 | 概念"
+title: "[机器狗自翻] McJty的Mod入门教程 1.20 - EP0 | 概念"
 category: 翻译
 tags:
   - minecraft
   - mod
   - forge
   - tutorial
-description: Every concept we talk about in this tutorial series will be summarized here in alphabetical order with links to the tutorials where they are discussed.
+description: 这篇文章全面梳理了 Minecraft Forge Mod 开发中的核心概念，按字母顺序详细解释了从 Baked Model 到 Waterlogging 的各种重要术语。文章包含烘焙模型、方块实体、能力系统、事件总线、渲染类型等关键概念的定义与用途说明，为 Minecraft Mod 开发者提供了一份完整的概念参考指南，是 McJty 的 Minecraft 1.20 Forge Mod 开发教程系列的基础知识总结。
 ---
 
 # McJty 的 Mod 入门教程 1.20 - EP0 | 概念

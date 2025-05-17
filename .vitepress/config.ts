@@ -1,5 +1,6 @@
 import { defineConfig } from "vitepress";
 import { getPosts } from "./theme/serverUtils";
+import { markdownHeimuPlugin } from "./plugins/markdown-heimu";
 
 //每页的文章数量
 const pageSize = 10;

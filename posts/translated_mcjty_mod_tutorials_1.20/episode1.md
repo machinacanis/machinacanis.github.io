@@ -1,13 +1,13 @@
 ---
 date: 2025-05-17
-title: "[翻译] McJty的Mod入门教程 1.20 - EP1"
+title: "[机器狗自翻] McJty的Mod入门教程 1.20 - EP1"
 category: 翻译
 tags:
   - minecraft
   - mod
   - forge
   - tutorial
-description: Every concept we talk about in this tutorial series will be summarized here in alphabetical order with links to the tutorials where they are discussed.
+description: 这篇教程是 McJty 的 Minecraft 1.20 Forge Mod 开发系列的第一部分，详细介绍了 Mod 开发的基础设置过程。内容包括项目环境配置、依赖管理、Mod 入口类创建以及如何向游戏添加第一个方块。教程涵盖了 Forge 开发的核心概念，如映射表、事件系统和注册时机，适合初学者入门 Minecraft Mod 开发。
 ---
 
 # McJty 的 Mod 入门教程 1.20 - EP1
@@ -65,76 +65,117 @@ description: Every concept we talk about in this tutorial series will be summari
 
 :::
 
-现在你可能想要修改你的 Mod 的 `modid`，这是一个只由 小写字母、数字以及下划线 组成的标识符。
+现在你可能想要修改你的 Mod 的 `modid`，一个只由 小写字母、数字以及下划线 组成的标识符。
 
-You probably want to change your modid.
-This should be a lowercase identifier containing only characters, digits and possibly an underscore.
-These are the places where you have to change the modid:
+你需要在以下两个地方进行修改：
 
 - `gradle.properties`
-- The main mod file. In the MDK that's called 'ExampleMod' but you can rename it to a better name. Also, probably rename the package
+- Mod 主类，在这个 MDK 里面叫做 `ExampleMod`，你可以把它改成更合适的名字。同时，你可能也需要重命名包名。
 
-## gradle.properties
+::: info 译者注：
 
-Starting with the Forge MDK for 1.20 all things that can be configured for a project are set
-in the `gradle.properties` file. `build.gradle` has special tasks to make sure that the values
-set here are properly propagated to `mods.toml` and other places.
+Java 有一套通行的标准命名模式，包名通常使用公司或组织的域名倒序作为前缀，例如 `com.example`。
 
-## Mappings
+如果你有一个自己的域名，比如我的`machinedog.wang`，那么我的包名就是`wang.machinedog`，我的主类应该是`./src/main/java/wang/machinedog/ExampleMod.java`。
 
-Minecraft is distributed in an obfuscated manner. That means that all names of methods, fields, and variables are
-renamed to meaningless names. ForgeGradle can deobfuscate this for you. However, it needs to know which mappings to use.
-For modern Minecraft there are basically two popular ways to do this:
+至于主类入口文件的命名一般没有什么要求，遵守大驼峰命名法即可，我建议使用你的 Mod 的全名来命名主类，比如我的 Mod 叫做`Endless Dunes`，入口文件就可以叫`EndlessDunes.java`
 
-- _official_: mappings from Mojang
-- _parchment_: mappings from Mojang with additional parameters and documentation
+:::
 
-More information on Parchment can be found [here](https://parchmentmc.org/docs/getting-started)
+## `gradle.properties`
 
-## JEI and TOP dependencies
+从 Forge MDK 1.20 开始，项目的配置都可以且推荐在 `gradle.properties`文件中进行。`build.gradle` 中有特殊的任务来确保这些值能够正确地传到 `mods.toml` 和其他地方。
 
-For development, it's nice to have JEI and TOP available.
-To do that you can change the following in your `build.gradle`.
-First change the `repositories` like this:
+## 映射表
 
-```gradle title="build.gradle"
+Minecraft 的游戏文件在分发之前进行了混淆。这意味着所有的方法、字段和变量的名称都被替换成了无意义的字符串。ForgeGradle 可以帮你对这些文件进行反混淆，但它需要知道应该使用哪种映射表。
+
+对于现在的 Minecraft 版本，基本上有两种流行的映射表：
+
+- **official**：来自 Mojang 的官方映射表
+- **parchment**：带有额外的参数和文档的官方映射表
+
+你可以在 [这里](https://parchmentmc.org/docs/getting-started) 找到关于 Parchment 映射表的更多信息。
+
+## JEI & TOP 依赖配置
+
+在开发的时候能用 JEI(Just Enough Items) 和 TOP(The One Probe) 会减少很多麻烦，为了实现这样的功能，你需要在 `build.gradle` 里修改`repositories`字段的内容。
+
+<Heimu>什么你问我为什么会提到 TOP 这个 Mod？你要不查一下 TOP 是谁写的（笑</Heimu>
+
+```groovy title="build.gradle"
 repositories {
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
 
-    maven { // JEI
+    maven { // 添加 JEI 的 Maven 仓库
         url "https://maven.blamejared.com"
     }
-    maven { // TOP
+    maven { // 添加 TOP 的 Maven 仓库
         url "https://maven.k-4u.nl"
     }
 }
 ```
 
-Then change `dependencies` to this:
+然后将 `dependencies` 字段修改成这样，主要添加了下面的 JEI 和 TOP 引入的部分:
 
-```gradle title="build.gradle"
+```groovy title="build.gradle"
 dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.5'
+    // 限定使用的 Minecraft 版本
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
+    // 作为示例的Mod依赖是JEI，通过使用 fg.deobf() 可以确保依赖被重映射到你开发时选用的映射表上
+    // JEI 的 API 被声明为只在编译时使用，而完整的 JEI 则会在运行时使用
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
+    // 通过 implementation 声明的依赖表示这个依赖在编译时和运行时都需要，且：
+    // 在编译时会被使用、在运行时会被包含、不会暴露给依赖于这个 Mod 的其他 Mod
+    // 通过 project.dependencies.create 创建依赖对象而不是直接传入依赖名称字符串是可选的，这是一种更灵活的依赖配置方式
+    // 但是实际上和 implementation fg.deobf("mcjty.theoneprobe:theoneprobe:${top_version}") 效果是一样的
+
     implementation fg.deobf(project.dependencies.create("mcjty.theoneprobe:theoneprobe:${top_version}") {
-            transitive = false
+            transitive = false // 禁用传递依赖，即不自动引入 The One Probe 自身所依赖的其他库
     })
 }
 ```
 
-After making all these changes you need to refresh gradle ('gradle' tab on the top right)
+不要忘记修改 `gradle.properties`，在其中任意一个你喜欢的地方添加`jei_version`和`top_version`这两个变量。
 
-## Generating the runs
+```groovy title="gradle.properties"
+jei_version=15.20.0.106
+top_version=1.20.1-10.0.1-3
+```
+
+千万千万不要忘记哦！不然你是拉不下来依赖的（笑
+
+把这些活都干完之后，我们就可以刷新并同步 Gradle 依赖了，你可以在 Idea 中点击右上角的大象图标来刷新 Gradle 项目。
+
+![刷新 Gradle](ep1-refresh-gradle.png)
+
+::: info 译者注：
+
+原教程文档中这部分直接缺失了依赖版本相关的问题，补充一下，我们从 maven 仓库拉取依赖的时候需要指定我们具体要拉什么依赖，通过`包名`:`项目名`: `版本号`来指定，例如`mezz.jei:jei-1.20.1-common-api:15.20.0.106`，其中：
+
+- `mezz.jei` 是包名
+- `jei-1.20.1-common-api` 是项目名
+- `15.20.0.106` 是版本号
+
+你可能有发现，有时候其中有一部分值会被使用很多很多很多很多次，比如这里的`1.20.1`，这时候我们就可以使用变量来简化配置，通过使用`${变量名}`来引用`gradle.properties`中定义的变量，这种格式化替换的方法之后还会经常使用。
+
+:::
+
+::: tip 发散一下
+
+:::
+
+## 生成运行配置
 
 To be able to run Minecraft from within IntelliJ you can also need to run the 'genIntellijRuns' task (also in the gradle tab).
 This will generate 'runClient', 'runServer', and 'runData' targets. For now, we'll use 'runClient' mostly.
