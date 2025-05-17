@@ -76,9 +76,9 @@ description: 这篇教程是 McJty 的 Minecraft 1.20 Forge Mod 开发系列的�
 
 Java 有一套通行的标准命名模式，包名通常使用公司或组织的域名倒序作为前缀，例如 `com.example`。
 
-如果你有一个自己的域名，比如我的`machinedog.wang`，那么我的包名就是`wang.machinedog`，我的主类应该是`./src/main/java/wang/machinedog/ExampleMod.java`。
+如果你有一个自己的域名，比如我的域名是 `machinedog.wang`，我给 Mod 分配的 `ModId`（命名空间）是 `examplemod`，那么我的包名就是`wang.machinedog.examplemod`，我的主类应该是`./src/main/java/wang/machinedog/examplemod/ExampleMod.java`。
 
-至于主类入口文件的命名一般没有什么要求，遵守大驼峰命名法即可，我建议使用你的 Mod 的全名来命名主类，比如我的 Mod 叫做`Endless Dunes`，入口文件就可以叫`EndlessDunes.java`
+至于主类入口文件的命名一般没有什么要求，遵守大驼峰命名法即可，我建议使用你的 Mod 的全名来命名主类，比如我的 Mod 叫做`Tutorial1 Basics`，入口文件就可以叫`Tutorial1Basics.java`
 
 :::
 
@@ -171,89 +171,112 @@ top_version=1.20.1-10.0.1-3
 
 :::
 
-::: tip 发散一下
+::: details 💡 发散一下
 
+虽然我们已经知道了要用`包名`:`项目名`: `版本号`的方式来从 Maven 仓库拉依赖，但是这里的三个值具体怎么填还是有些让人一团雾水。
+
+这就是考验你从网上查东西的水平的时候了（笑
+
+首先，绝大多数情况下，当你需要依赖某一个 mod 的时候，这个 mod 的可用的 `包名`:`项目名`:`版本号`都会在它的发布页或者文档里写出来。
+
+其次，我们可以从 Maven 仓库去反过来找其中的内容，一般来讲大部分常见的 Maven 仓库是可以直接从浏览器访问并查看其中的目录树的，这样你就可以顺着你需要的 Mod 的包名和项目名去一步步的找到你具体需要拉取的依赖信息。
+
+可是还有很多 Mod 甚至根本就没有通过自己的 Maven 仓库进行分发，而是仅发布到 CurseForge 或者 Modrinth 上，此时你可以通过使用 Curse Maven / Modrinth Maven 来拉取这些 Mod。
+
+这两个 Maven 仓库分发服务的使用就后续再谈了，你可以直接自己尝试去查询用法，或者实在是这么懒的话也可以等我以后写个文档。
 :::
 
 ## 生成运行配置
 
-To be able to run Minecraft from within IntelliJ you can also need to run the 'genIntellijRuns' task (also in the gradle tab).
-This will generate 'runClient', 'runServer', and 'runData' targets. For now, we'll use 'runClient' mostly.
-Try it out and if all went well you should see Minecraft If this was successful you should see something like this:
+为了能够在 IntelliJ Idea 里运行 Minecraft 以方便调试，我们需要在 Gradle 选项卡中选择并运行 `genIntellijRuns` 任务。
 
-:::danger Warning
-Make sure that you're using Java 17!
+这个任务会在运行成功之后生成`runClient`、`runServer` 和 `runData` 这几个任务。而我们主要会使用 `runClient` 来直接在 IDE 里运行游戏客户端。
+
+![运行 genIntellijRuns 任务](ep1-gen-intellij-run.png)
+
+::: warning
+
+对于 1.20 及以上的版本（比如这篇教程中使用的 1.20.1），请务必使用 **Java 17** 或更高版本。
+
 :::
 
-image
+::: tip
 
-## The Basic Mod Class
+请在你每次更改过 gradle 相关的文件之后都运行一次`genIntellijRuns` 任务以确保运行配置是最新的。
 
-There are many ways to structure your mod.
-In this base tutorial we follow the structure from the MDK. In future tutorials we will restructure this a bit.
-So here is our main mod class:
+:::
+
+## Mod 的基础类
+
+Well，在 Java 里你其实有很多很多种组织代码的方法，不过在这篇教程中，我们只需要跟随 MDK 的代码组织方式即可，在之后的教程中我们还会略微修改这套结构。
+
+假设 Mod 的 `ModId` 是 `examplemod`，你可以参考下面的代码来修改 Mod 的基类：
 
 ```java title="Tutorial1Basics.java"
-// The value here should match an entry in the META-INF/mods.toml file
-@Mod(Tutorial1Basics.MODID)
-public class Tutorial1Basics {
-    // Define mod id in a common place for everything to reference
-    public static final String MODID = "tut1basics";
-    // Directly reference a slf4j logger
+@Mod(ExampleMod.MODID)
+public class ExampleMod {
+    // 这里的ModId必须要和 META-INF/mods.toml 中填写的 ModId 相同
+    // 当然也理应和 Gradle 配置中的 ModId 相同
+    public static final String MODID = "examplemod";
+    // 实例化一个slf4j logger，用来输出日志的（Forge标准日志框架）
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    // Create a Deferred Register to hold Blocks which will all be registered under the "tut1basics" namespace
+    // 创建一个延迟的注册器，用来在这个ModId的命名空间下注册方块
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-    // Create a Deferred Register to hold Items which will all be registered under the "tut1basics" namespace
+    // 创建一个延迟的注册器，用来在这个ModId的命名空间下注册物品
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
-    // Creates a new Block with the id "tut1basics:example_block", combining the namespace and path
+    // 创建一个方块 "examplemod:example_block"
     public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
-    // Creates a new BlockItem with the id "tut1basics:example_block", combining the namespace and path
+    // 创建这个方块对应的 方块物品
     public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties()));
 
-    public Tutorial1Basics() {
+    // 注册同名入口构建方法，在 Java 中，这类构造方法的返回值就是这个类的实例，可以确保这个类只会被全局实例化一次
+    public ExampleMod() {
+        // 获取 Forge 的事件总线
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        // Register the commonSetup method for modloading
+        // 将 commonSetup 方法注册到 Forge 事件总线的加载过程中
+        // 这个方法在后面定义
         modEventBus.addListener(this::commonSetup);
 
-        // Register the Deferred Registers to the mod event bus so blocks and items get registered
+        // 将之前创建的两个延时注册器注册到事件总线，实现方块和物品的创建
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
 
-        // Register ourselves for server and other game events we are interested in
+        // 通过事件总线注册当前实例为事件监听器
         MinecraftForge.EVENT_BUS.register(this);
 
-        // Register the item to a creative tab
+        // 将注册的物品添加到创造模式物品栏中，同样这个方法后面也会有定义
         modEventBus.addListener(this::addCreative);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        // Some common setup code
+        // 这个方法用于在 Mod 被加载的时候执行一些初始化操作
         LOGGER.info("HELLO FROM COMMON SETUP");
         LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        // 这个方法用于在 创造模式物品栏 中添加物品
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(EXAMPLE_BLOCK_ITEM);
         }
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
+    // 你还可以通过 @SubscribeEvent 来让事件总线发现并调用方法
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
+        // 在游戏服务器启动时触发
         LOGGER.info("HELLO from server starting");
     }
 
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
+    // 你可以通过 @EventBusSubscriber 来让事件总线自动注册所有被 @SubscribeEvent 注解的方法
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            // Some client setup code
+            // 在游戏客户端启动时触发
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
@@ -261,15 +284,55 @@ public class Tutorial1Basics {
 }
 ```
 
-## Minecraft Concepts
+::: info 译者注
 
-In the following image there are three columns:
+如果你使用了现代一点的版本的 Idea，你可能会发现一个错误提示：
 
-- `Definitions`: these are objects of which there is only one instance in the game. There is (for example) only one diamond sword. If you have two diamond swords in your inventory they are two different '''ItemStack''' instances referring to the same diamond sword item instance. This is important!
-- `Inventory`: all objects in an inventory (player or other containers) are represented with ItemStacks. An ItemStack is an actual in-game instance of an item. Note: in order to be able to hold blocks in your inventory the block needs a corresponding item
-- `World`: when blocks are placed in the world they are placed as a `BlockState`. A BlockState is a specific configuration of a block. For example, a furnace can have six orientations. Those are six different blockstates. In addition, a furnace can also be powered or not. So that means in total 12 different blockstates. '''Block Entities''' are objects that help extend blocks in the world to be able to hold more information (like inventory) as well as do things (tick).
+![内联错误提示](ep1-example-mod-inline-error.png)
 
-image
+这是因为 `FMLJavaModLoadingContext` 的`get()` 方法被标记为了 `@Deprecated`，也就是一个将在未来被弃用的方法。
+
+如果你没有特别不想看见代码被标红的话，你可以选择忽略这个错误，游戏照跑不误。但是你也可以选择更换到新的编写方式。
+
+```java
+// 注册同名入口构建方法，在 Java 中，这类构造方法的返回值就是这个类的实例，可以确保这个类只会被全局实例化一次
+public ExampleMod(FMLJavaModLoadingContext context) {
+    // 获取 Forge 的事件总线
+    IEventBus modEventBus = context.getModEventBus();
+
+    // 将 commonSetup 方法注册到 Forge 事件总线的加载过程中
+    // 这个方法在后面定义
+    modEventBus.addListener(this::commonSetup);
+
+    // 将之前创建的两个延时注册器注册到事件总线，实现方块和物品的创建
+    BLOCKS.register(modEventBus);
+    ITEMS.register(modEventBus);
+
+    // 通过事件总线注册当前实例为事件监听器
+    MinecraftForge.EVENT_BUS.register(this);
+
+    // 将注册的物品添加到创造模式物品栏中，同样这个方法后面也会有定义
+    modEventBus.addListener(this::addCreative);
+}
+```
+
+新版本的 Forge 支持以这种被称之为 `依赖注入` 的方式来注册 Mod 的构造方法。
+
+你问什么是依赖注入？简而言之，依赖注入就是一种创建实例的方式，实例本身不负责自己依赖的对象的创建和管理（比如各种传入的参数），而是由外部来创建并管理，通过传参的方式来注入到实例中。
+
+:::
+
+## 一些你应该知道的概念
+
+在下面的图中有三列我们需要理解的概念：
+
+- `定义`：这些对象在整个游戏运行周期中只有一个实例。例如，游戏中只有一个钻石剑的实例。如果你的背包中有两把钻石剑，那么它们实际上是两个不同的 `ItemStack` 实例，但都引用了同一个钻石剑 `Item` 实例。这一点非常重要！
+
+- `物品栏`：一个玩家或容器中的所有对象都用 ItemStack（物品堆栈）表示。ItemStack 是游戏中实际物品的实例。注意：要能够将方块放入物品栏，方块必须对应于一个对应的 BlockItem。
+
+- `世界`：当方块被放置在世界中时，它们以 BlockState（方块状态）存在。BlockState 是方块的特定配置。例如，熔炉可以有六种朝向，这就是六种不同的方块状态。此外，熔炉可以处于点燃或未点燃状态，所以总共有 12 种不同的方块状态。_Block Entities_（方块实体）是用于帮助扩展世界中方块功能的对象，使它们能够存储更多信息（如物品栏内容）并执行各种功能（如定时更新）。
+
+![Minecraft Concepts](ep1-minecraft-concepts.png)
 
 ## Sides
 
