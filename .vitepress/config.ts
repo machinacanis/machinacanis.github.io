@@ -1,6 +1,11 @@
 import { defineConfig } from "vitepress";
 import { getPosts } from "./theme/serverUtils";
 import { fileURLToPath, URL } from "node:url";
+import {
+  groupIconMdPlugin,
+  groupIconVitePlugin,
+  localIconLoader,
+} from "vitepress-plugin-group-icons";
 
 //每页的文章数量
 const pageSize = 10;
@@ -20,6 +25,9 @@ export default defineConfig({
     theme: {
       light: "vitesse-light",
       dark: "vitesse-dark",
+    },
+    config(md) {
+      md.use(groupIconMdPlugin); //代码组图标
     },
   },
 
@@ -116,6 +124,17 @@ export default defineConfig({
   vite: {
     //build: { minify: false }
     server: { port: 5000 },
+    plugins: [
+      groupIconVitePlugin({
+        customIcon: {
+          // 自定义图标
+          pip: localIconLoader(import.meta.url, "../public/python.svg"),
+          pdm: localIconLoader(import.meta.url, "../public/pdm.svg"),
+          poetry: localIconLoader(import.meta.url, "../public/poetry.svg"),
+          uv: localIconLoader(import.meta.url, "../public/uv.svg"),
+        },
+      }), //代码组图标
+    ],
   },
   /*
       optimizeDeps: {

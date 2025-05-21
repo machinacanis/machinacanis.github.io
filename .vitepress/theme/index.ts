@@ -27,6 +27,8 @@ import "nprogress-v2/dist/index.css"; // 进度条样式
 import mediumZoom from "medium-zoom";
 import { useRoute } from "vitepress";
 
+import "virtual:group-icons.css"; //代码组样式 //
+
 import "./styles/custom.css";
 
 export default {

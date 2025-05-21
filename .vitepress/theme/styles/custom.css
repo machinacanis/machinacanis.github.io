@@ -1,5 +1,6 @@
 @import "./code.css";
 @import "./rainbow.css";
+@import "./heimu.css";
 
 :root {
   --vp-c-brand: #2563eb !important;
